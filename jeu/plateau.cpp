@@ -12,15 +12,27 @@ class Etat {
         void add_cube(int tige, int cube);
         int suppr_cube(int tige);
         void move(int tige_depart, int tige_destination);
+        bool equals(Etat *e);
+        Etat clone();
 
 };
+
+bool Etat::equals(Etat *e){
+    for(int i = 0; i<4;i++){
+        for(int j = 0; j<3;j++){
+            if(tiges[i][j]!= e->tiges[i][j]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 Etat::Etat(){
     for(int i = 0; i<4;i++){
         for(int j = 0; j<3;j++){
             tiges[i][j]=0;
         }
-        nb_cube[i] = 0;
     }
 }
 
@@ -59,19 +71,19 @@ void Etat::move(int tige_depart, int tige_destination){
     add_cube(tige_destination, suppr_cube(tige_depart));
 }
 
-int main(){
-    Etat *e = new Etat();
+// int main(){
+//     Etat *e = new Etat();
     
-    e->print();
-    std::cout<<"\n";
-    e->add_cube(1, 3);
-    e->print();
-    std::cout<<"\n";
+//     e->print();
+//     std::cout<<"\n";
+//     e->add_cube(1, 3);
+//     e->print();
+//     std::cout<<"\n";
 
-    // e->suppr_cube(1);
-    // e->print();
-    // std::cout<<"\n";
-    e->move(1, 2);
-    e->print();
+//     // e->suppr_cube(1);
+//     // e->print();
+//     // std::cout<<"\n";
+//     e->move(1, 2);
+//     e->print();
 
-}
+// }
