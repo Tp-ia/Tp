@@ -1,4 +1,5 @@
 #include "../jeu/plateau.cpp"
+#include <queue>
 
 typedef struct{
     bool but;
@@ -6,7 +7,9 @@ typedef struct{
 
 } retour ;
 
-bool testEtatBut(Etat *e){}
+std::queue<Etat> filsEtat(Etat *e){
+
+}
 
 retour ProfondeurDAbord(Etat *e){
 
