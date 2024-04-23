@@ -12,7 +12,7 @@ class Etat {
         int suppr_cube(int num_tige);
         void move(int num_tige_depart, int num_tige_destination);
         bool equals(Etat *e);
-        Etat clone();
+        Etat* clone();
 
 };
 
@@ -59,6 +59,14 @@ int Etat::suppr_cube(int num_tige){
 
 void Etat::move(int tige_depart, int tige_destination){
     add_cube(tige_destination, suppr_cube(tige_depart));
+}
+
+Etat* Etat::clone(){
+    Etat *copy =new Etat(level);
+    for(int i =0;i<4;i++){
+        copy->tiges[i]=tiges[i];
+    }
+    return copy;
 }
 
 int main(){
