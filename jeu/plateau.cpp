@@ -1,17 +1,17 @@
 #include <iostream>
+#include <stack>
 
 
 
 
 class Etat {
     public:
-        int tiges[4][3];
-        int nb_cube[4];
+        std::stack<int> tiges[4];
         Etat();
         void print();
-        void add_cube(int tige, int cube);
-        int suppr_cube(int tige);
-        void move(int tige_depart, int tige_destination);
+        void add_cube(int num_tige, int cube);
+        int suppr_cube(int num_tige);
+        void move(int num_tige_depart, int num_tige_destination);
         bool equals(Etat *e);
         Etat clone();
 
@@ -19,10 +19,8 @@ class Etat {
 
 bool Etat::equals(Etat *e){
     for(int i = 0; i<4;i++){
-        for(int j = 0; j<3;j++){
-            if(tiges[i][j]!= e->tiges[i][j]){
-                return false;
-            }
+        if(tiges[i]!=e->tiges[i]){
+            return false
         }
     }
     return true;
