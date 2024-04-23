@@ -1,5 +1,8 @@
-#include "../jeu/plateau.cpp"
+#include "../jeu/plateau.h"
 #include <queue>
+
+using namespace std;
+
 
 typedef struct{
     bool but;
@@ -25,6 +28,27 @@ retour ProfondeurDAbord(Etat *e){
 
 }
 
+void printQueue(const queue<Etat>& q) {
+    // Create a copy of the queue to preserve its original content
+    queue<Etat> tempQueue = q;
+
+    // Dequeue and print elements from the temporary queue
+    cout << "Queue: \n";
+    while (!tempQueue.empty()) {
+        tempQueue.front().print();
+        tempQueue.pop();
+        cout << "\n";
+    }
+    cout << endl;
+}
+
 int main(){
     Etat *e = new Etat(0);
+    e->add_cube(1, 3);
+    queue<Etat> q = filsEtat(e);
+
+    printQueue(q);
+
+
+
 }

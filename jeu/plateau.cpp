@@ -1,21 +1,8 @@
 #include <iostream>
-#include <stack>
+#include "plateau.h"
 
 using namespace std;
 
-class Etat {
-    public:
-        std::stack<int> tiges[4];
-        int level;
-        Etat(int level);
-        void print();
-        void add_cube(int num_tige, int cube);
-        int suppr_cube(int num_tige);
-        void move(int num_tige_depart, int num_tige_destination);
-        bool equals(Etat *e);
-        Etat* clone();
-
-};
 
 Etat::Etat(int level) { this->level = level; }
 
@@ -30,7 +17,6 @@ bool Etat::equals(Etat *e) {
 
 void Etat::print() {
   std::stack<int> tempStack;
-  int tmp;
   for (int i = 0; i < 4; i++) {
     tempStack = tiges[i];
     cout << "tige " << i << "= ";
@@ -73,21 +59,21 @@ Etat* Etat::clone(){
     return copy;
 }
 
-int main() {
-  Etat *e = new Etat(0);
+// int main() {
+//   Etat *e = new Etat(0);
 
-  e->print();
-  std::cout << "\n";
-  e->add_cube(1, 3);
-  e->print();
-  std::cout << "\n";
+//   e->print();
+//   std::cout << "\n";
+//   e->add_cube(1, 3);
+//   e->print();
+//   std::cout << "\n";
 
-  e->suppr_cube(1);
-  e->print();
-  std::cout << "\n";
+//   e->suppr_cube(1);
+//   e->print();
+//   std::cout << "\n";
 
-  e->add_cube(1, 3);
+//   e->add_cube(1, 3);
 
-  e->move(1, 2);
-  e->print();
-}
+//   e->move(1, 2);
+//   e->print();
+// }
