@@ -6,7 +6,8 @@ LDFLAGS =
 TARGET = profondeur_dabord
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/tests.cpp
+
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)

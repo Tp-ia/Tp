@@ -6,6 +6,21 @@ using namespace std;
 
 Etat::Etat(int level) { this->level = level; }
 
+std::queue<Etat> Etat::filsEtat(){
+    std::queue<Etat> filsEtat;
+    for(int num_tige_depart =0;num_tige_depart<4;num_tige_depart++){
+        for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
+            if(num_tige_arrive!=num_tige_depart && tiges[num_tige_depart].size()!=0 && tiges[num_tige_arrive].size()<3 ){
+                Etat *fils=clone();
+                fils->move(num_tige_depart,num_tige_arrive);
+                fils->level++;
+                filsEtat.push(*fils);
+            }
+        }
+    }
+    return filsEtat;
+}
+
 bool Etat::equals(Etat *e) {
   for (int i = 0; i < 4; i++) {
     if (tiges[i] != e->tiges[i]) {
@@ -55,6 +70,7 @@ Etat* Etat::clone(){
     Etat *copy =new Etat(level);
     for(int i =0;i<4;i++){
         copy->tiges[i]=tiges[i];
+        copy->level=level;
     }
     return copy;
 }

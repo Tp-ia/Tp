@@ -1,29 +1,8 @@
+#include "profondeur_dabord.h"
 #include "../jeu/plateau.h"
 #include <queue>
 
 using namespace std;
-
-
-typedef struct{
-    bool but;
-    Etat *e;
-
-} retour ;
-
-std::queue<Etat> filsEtat(Etat *e){
-    std::queue<Etat> filsEtat;
-    for(int num_tige_depart =0;num_tige_depart<4;num_tige_depart++){
-        for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
-            if(num_tige_arrive!=num_tige_depart && e->tiges[num_tige_depart].size()!=0 && e->tiges[num_tige_arrive].size()<3 ){
-                Etat *fils=e->clone();
-                fils->move(num_tige_depart,num_tige_arrive);
-                fils->level++;
-                filsEtat.push(*fils);
-            }
-        }
-    }
-    return filsEtat;
-}
 
 bool elementDansQueue(const queue<Etat>& maQueue, Etat* elementRecherche) {
     queue<Etat> maQueueTemp = maQueue; // Copie de la file pour éviter de la modifier
@@ -37,6 +16,7 @@ bool elementDansQueue(const queue<Etat>& maQueue, Etat* elementRecherche) {
 
     return false; // L'élément n'est pas trouvé
 }
+
 retour ProfondeurDAbord(Etat *e,Etat *etat_but){
     retour resultat;
     resultat.but=false;
@@ -56,7 +36,7 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
             resultat.e=etat_but;
         }
         else{
-            q = filsEtat(e);
+            q = prochain.filsEtat();
             while(!q.empty()){
                 fils = q.front();
                 q.pop();
@@ -86,7 +66,7 @@ void printQueue(const queue<Etat>& q) {
 int main(){
     Etat *e = new Etat(0);
     e->add_cube(1, 3);
-    queue<Etat> q = filsEtat(e);
+    queue<Etat> q = e->filsEtat();
 
     printQueue(q);
 
