@@ -63,13 +63,10 @@ void printQueue(const queue<Etat>& q) {
     cout << endl;
 }
 
-int main(){
-    Etat *e = new Etat(0);
-    e->add_cube(1, 3);
-    queue<Etat> q = e->filsEtat();
+// int main(){
+//     Etat *e = new Etat(0);
+//     e->add_cube(1, 3);
+//     queue<Etat> q = e->filsEtat();
 
-    printQueue(q);
-
-
-
-}
+//     printQueue(q);
+// }
