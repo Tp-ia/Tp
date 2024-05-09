@@ -1,6 +1,6 @@
 #include "profondeur_dabord.h"
 #include "../jeu/plateau.h"
-
+//encore a faire: fonctions heuristiques,tester les fonctions et terminer ida
 int main(int argc,char ** argv){
     Etat * initial_1=new Etat(0);
     Etat * initial_2=new Etat(0);
