@@ -6,7 +6,7 @@ LDFLAGS =
 TARGET = profondeur_dabord
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/tests.cpp parcour/ida.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/tests.cpp parcour/ida.cpp parcour/heuristiques.cpp
 
 
 # Object files

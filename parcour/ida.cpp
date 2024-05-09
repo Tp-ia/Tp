@@ -1,18 +1,25 @@
 #include "../jeu/plateau.h"
-#include "./profondeur_dabord.h"
+#include "./profondeur_dabord.h"//juste pour la struct retour, chnager endroit de retour
+#include "heuristiques.cpp"
 #include <list>
 
 #define MIN 1000;
 
 using namespace std;
 
+//TODO
 list<Etat> filsEtatIDA(Etat initial,Etat but,int (*h)(Etat,Etat)){
     list<Etat> successors;
+    
     return successors;
 }
+
+//TODO
 bool contains(Etat actuel,list<Etat> chemin){//parcours dune liste
     return true;
 }
+
+
 retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat,Etat),Etat but){
     retour resultat;
     resultat.but=false;
@@ -46,6 +53,7 @@ retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat,Etat),Etat but){
     return resultat;
 }
 
+//RETOUR Etat OU PATH?
 Etat ida_star(Etat initial,Etat but,int (*h)(Etat,Etat)){
     int lim = h(initial,but);
     list<Etat> chemin ={initial};
