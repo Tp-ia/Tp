@@ -8,6 +8,7 @@ using namespace std;
 typedef struct{
     bool but;
     Etat *e;
+    int lim;
 
 } retour ;
 retour ProfondeurDAbord(Etat *e,Etat *etat_but);
