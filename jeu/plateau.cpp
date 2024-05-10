@@ -61,18 +61,15 @@ bool comparerPiles(const std::stack<int>& pile1, const std::stack<int>& pile2) {
     return true;
 }
 
-bool Etat::operator==(Etat&autre){
-  return(this->equals(&autre));
-}
-
-bool Etat::equals(Etat *e) {
-  for (int i = 0; i < 4; i++) {
-    if (!comparerPiles(tiges[i],e->tiges[i])) {
+bool Etat::operator==(Etat*autre) const{
+    for (int i = 0; i < 4; i++) {
+    if (!comparerPiles(tiges[i],autre->tiges[i])) {
       return false;
     }
   }
   return true;
 }
+
 
 void Etat::print() {
   std::stack<int> tempStack;

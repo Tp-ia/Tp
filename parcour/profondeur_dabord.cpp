@@ -8,7 +8,7 @@ bool elementDansQueue(const queue<Etat>& maQueue, Etat* elementRecherche) {
     queue<Etat> maQueueTemp = maQueue; // Copie de la file pour éviter de la modifier
 
     while (!maQueueTemp.empty()) {
-        if (maQueueTemp.front().equals(elementRecherche)) {
+        if (maQueueTemp.front() == elementRecherche) {
             return true; // L'élément est trouvé
         }
         maQueueTemp.pop(); // Passe à l'élément suivant
@@ -31,7 +31,7 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
         prochain=enAttente.top();
         enAttente.pop();
         vus.push(prochain);
-        if(prochain.equals(etat_but)){
+        if(prochain == etat_but){
             resultat.but=true;
             resultat.e=etat_but;
         }
@@ -63,7 +63,7 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
         prochain=enAttente.top();
         enAttente.pop();
         vus.push(prochain);
-        if(prochain.equals(etat_but)){
+        if(prochain == etat_but){
             resultat.but=true;
             resultat.e=etat_but;
         }

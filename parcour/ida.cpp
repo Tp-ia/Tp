@@ -29,7 +29,7 @@ retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but)
         resultat.lim=f;
         return resultat;
     }
-    if(node.equals(but)){
+    if(node == but){
         resultat.e=&node;
         resultat.but=true;
         return resultat;

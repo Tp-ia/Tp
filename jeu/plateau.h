@@ -21,11 +21,10 @@ class Etat {
         void add_cube(int num_tige, int cube);
         int suppr_cube(int num_tige);
         void move(int num_tige_depart, int num_tige_destination);
-        bool equals(Etat *e);
         Etat* clone();
         queue<Etat> filsEtat();
         list<Etat> filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*));
-        bool operator==(Etat&autre);
+        bool operator==(Etat *autre) const;
         bool operator<(const Etat& other) const {
         return cost < other.cost;
     }
