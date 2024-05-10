@@ -81,7 +81,15 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     return resultat;
 }
 
-retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int lim);
+retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int pas){
+    int lim=0;
+    retour resultat=ProfondeurDAbordBornee_sous_fonction(e,etat_but,lim);
+    while(!resultat.but){
+        lim+=pas;
+        resultat=ProfondeurDAbordBornee_sous_fonction(e,etat_but,lim);
+    }
+    return resultat;
+}
 
 void printQueue(const queue<Etat>& q) {
     // Create a copy of the queue to preserve its original content
