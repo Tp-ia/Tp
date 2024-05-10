@@ -3,17 +3,19 @@
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <list>
 
 using namespace std;
 class Etat {
     private:
         std::stack<int> tiges[4];
         int level;
-        int cout;
+        int cost;
     public:
         Etat(int level);
         int getlevel(){ return level;}
-        int getcout(){ return cout;}
+        int getcost(){ return cost;}
+        void setcost(int cost){ this->cost = cost;}
         void print();
         void add_cube(int num_tige, int cube);
         int suppr_cube(int num_tige);
@@ -21,7 +23,12 @@ class Etat {
         bool equals(Etat *e);
         Etat* clone();
         queue<Etat> filsEtat();
+        list<Etat> filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*));
         bool operator==(Etat&autre);
+        bool operator<(const Etat& other) const {
+        return cost < other.cost;
+    }
+        
         //ajouter path ou pereEtat
 };
 
