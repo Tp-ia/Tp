@@ -10,7 +10,7 @@ using namespace std;
 
 
 //TODO
-bool contains(Etat *actuel,list<Etat*> chemin){//parcours dune liste
+bool contains(Etat *actuel,list<Etat> chemin){//parcours dune liste
     auto it = find(chemin.begin(),chemin.end(),actuel);
     if(it !=chemin.end()){
         return true;
@@ -19,25 +19,25 @@ bool contains(Etat *actuel,list<Etat*> chemin){//parcours dune liste
 }
 
 
-retour search(list<Etat*> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but){
+retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but){
     retour resultat;
     resultat.but=false;
-    Etat *node = chemin.back();
-    int f =g + h(node,but);
+    Etat node = chemin.back();
+    int f =g + h(&node,but);
     if(f>lim){
         resultat.lim=f;
         return resultat;
     }
-    if(node->equals(but)){
-        resultat.e=node;
+    if(node.equals(but)){
+        resultat.e=&node;
         resultat.but=true;
         return resultat;
     }
     int min=MIN;
-    list<Etat> successors = node->filsEtatIDA(but,h);
+    list<Etat> successors = node.filsEtatIDA(but,h);
     for(Etat actuel = successors.front();!successors.empty();actuel=successors.front()){
         if(!contains(&actuel,chemin)){
-            chemin.push_back(&actuel);
+            chemin.push_back(actuel);
             resultat = search(chemin,g+1,lim,h,but);
             if(resultat.but){
                 return resultat;
@@ -55,7 +55,7 @@ retour search(list<Etat*> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but
 //RETOUR Etat OU PATH?
 Etat ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     int lim = h(initial,but);
-    list<Etat*> chemin ={initial};
+    list<Etat> chemin ={*initial};
     retour resultat;
     resultat.but=false;
     resultat.e=initial;
