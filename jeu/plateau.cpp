@@ -24,6 +24,25 @@ std::queue<Etat> Etat::filsEtat(){
     return filsEtat;
 }
 
+
+list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
+	list<Etat> successors;
+	for(int num_tige_depart =0;num_tige_depart<4;num_tige_depart++){
+    for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
+            if(num_tige_arrive!=num_tige_depart && tiges[num_tige_depart].size()!=0 && tiges[num_tige_arrive].size()<3 ){
+                Etat *fils=clone();
+                fils->move(num_tige_depart,num_tige_arrive);
+                fils->level++;
+				fils->setcost(h(this,but));
+                successors.push_back(*fils);
+            }
+        }
+    }
+
+	successors.sort();
+    return successors;
+}
+
 bool comparerPiles(const std::stack<int>& pile1, const std::stack<int>& pile2) {
     if (pile1.size() != pile2.size()) {
         return false;
