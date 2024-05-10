@@ -72,13 +72,13 @@ bool Etat::operator==(Etat*autre) const{
 
 
 void Etat::print() {
-  std::stack<int> tempStack;
+  list<int> tempStack;
   for (int i = 0; i < 4; i++) {
     tempStack = tiges[i];
     cout << "tige " << i << "= ";
     while (!tempStack.empty()) {
-      std::cout << tempStack.top() << " ";
-      tempStack.pop();
+      std::cout << tempStack.back() << " ";
+      tempStack.pop_back();
     }
 
     std::cout << "\n";
@@ -99,7 +99,7 @@ void Etat::add_cube(int num_tige, int cube) {
     std::cout << "tiges deja pleine\n";
     exit(0);
   }
-  tiges[num_tige].push(cube);
+  tiges[num_tige].push_back(cube);
 }
 
 int Etat::suppr_cube(int num_tige) {
@@ -107,8 +107,8 @@ int Etat::suppr_cube(int num_tige) {
     std::cout << "pas de cube a deplacer\n";
     exit(0);
   }
-  int cube = tiges[num_tige].top();
-  tiges[num_tige].pop();
+  int cube = tiges[num_tige].back();
+  tiges[num_tige].pop_back();
   return cube;
 }
 

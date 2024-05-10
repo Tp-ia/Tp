@@ -1,14 +1,14 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 #include <iostream>
-#include <stack>
+#include <list>
 #include <queue>
 #include <list>
 
 using namespace std;
 class Etat {
     private:
-        std::stack<int> tiges[4];
+        std::list<int> tiges[4];
         int level;
         int cost;
         Etat *pere;

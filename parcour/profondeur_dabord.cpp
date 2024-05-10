@@ -21,7 +21,7 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
     retour resultat;
     resultat.but=false;
     resultat.e=e;
-    stack<Etat> enAttente;
+    list<Etat> enAttente;
     queue<Etat> vus;
     enAttente.push(*e);
     Etat fils=Etat(0);

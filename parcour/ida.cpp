@@ -24,7 +24,7 @@ retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but)
     retour resultat;
     resultat.but=false;
     Etat node = chemin.back();
-    int f =g + h(&node,but);
+    int f =node.getlevel() + node.getcout();
     if(f>lim){
         resultat.lim=f;
         return resultat;
@@ -39,11 +39,11 @@ retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but)
     for(Etat actuel = successors.front();!successors.empty();actuel=successors.front()){
         if(!contains(&actuel,chemin)){
             chemin.push_back(actuel);
-            resultat = search(chemin,g+1,lim,h,but);
+            resultat = search(chemin,lim,h,but);
             if(resultat.but){
                 return resultat;
             }
-            if(resultat.lim<lim){
+            if(resultat.lim<min){
                 min=resultat.lim;
             }
             chemin.pop_back();
@@ -61,7 +61,7 @@ Etat ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     resultat.but=false;
     resultat.e=initial;
     while(!resultat.but){
-        resultat = search(chemin,0,lim,h,but);
+        resultat = search(chemin,lim,h,but);
         lim=resultat.lim;
     }
     return resultat.but;
