@@ -12,5 +12,6 @@ typedef struct{
 
 } retour ;
 retour ProfondeurDAbord(Etat *e,Etat *etat_but);
+retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int pas);
 
 #endif

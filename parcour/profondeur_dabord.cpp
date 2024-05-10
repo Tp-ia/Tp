@@ -49,6 +49,40 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
     return resultat;
 }
 
+retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
+    retour resultat;
+    resultat.but=false;
+    resultat.e=e;
+    stack<Etat> enAttente;
+    queue<Etat> vus;
+    enAttente.push(*e);
+    Etat fils=Etat(0);
+    Etat prochain=Etat(0);
+    queue<Etat> q;
+    while(!enAttente.empty() && !resultat.but){
+        prochain=enAttente.top();
+        enAttente.pop();
+        vus.push(prochain);
+        if(prochain.equals(etat_but)){
+            resultat.but=true;
+            resultat.e=etat_but;
+        }
+        else{
+            q = prochain.filsEtat();
+            while(!q.empty()){
+                fils = q.front();
+                q.pop();
+                if(!elementDansQueue(vus,&fils) && fils.getlevel()<=lim){
+                    enAttente.push(fils);
+                }
+            }
+        }
+    }
+    return resultat;
+}
+
+retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int lim);
+
 void printQueue(const queue<Etat>& q) {
     // Create a copy of the queue to preserve its original content
     queue<Etat> tempQueue = q;
