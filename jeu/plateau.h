@@ -21,6 +21,7 @@ class Etat {
         bool equals(Etat *e);
         Etat* clone();
         queue<Etat> filsEtat();
+        bool operator==(Etat&autre);
         //ajouter path ou pereEtat
 };
 

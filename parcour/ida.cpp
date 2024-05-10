@@ -2,6 +2,7 @@
 #include "./profondeur_dabord.h"//juste pour la struct retour, chnager endroit de retour
 #include "heuristiques.cpp"
 #include <list>
+#include <algorithm>
 
 #define MIN 1000;
 
@@ -16,7 +17,11 @@ list<Etat> filsEtatIDA(Etat initial,Etat but,int (*h)(Etat,Etat)){
 
 //TODO
 bool contains(Etat actuel,list<Etat> chemin){//parcours dune liste
-    return true;
+    auto it = find(chemin.begin(),chemin.end(),actuel);
+    if(it !=chemin.end()){
+        return true;
+    }
+    else return false;
 }
 
 

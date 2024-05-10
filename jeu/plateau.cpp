@@ -21,9 +21,31 @@ std::queue<Etat> Etat::filsEtat(){
     return filsEtat;
 }
 
+bool comparerPiles(const std::stack<int>& pile1, const std::stack<int>& pile2) {
+    if (pile1.size() != pile2.size()) {
+        return false;
+    }
+
+    std::stack<int> tempPile1 = pile1;
+    std::stack<int> tempPile2 = pile2;
+
+    while (!tempPile1.empty()) {
+        if (tempPile1.top()!=tempPile2.top()) {
+            return false;
+        }
+        tempPile1.pop();
+        tempPile2.pop();
+    }
+    return true;
+}
+
+bool Etat::operator==(Etat&autre){
+  return(this->equals(&autre));
+}
+
 bool Etat::equals(Etat *e) {
   for (int i = 0; i < 4; i++) {
-    if (tiges[i] != e->tiges[i]) {
+    if (!comparerPiles(tiges[i],e->tiges[i])) {
       return false;
     }
   }
