@@ -43,27 +43,27 @@ list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
     return successors;
 }
 
-bool comparerPiles(const std::stack<int>& pile1, const std::stack<int>& pile2) {
+bool comparerListes(const list<int>& pile1, const std::list<int>& pile2) {
     if (pile1.size() != pile2.size()) {
         return false;
     }
 
-    std::stack<int> tempPile1 = pile1;
-    std::stack<int> tempPile2 = pile2;
+    list<int> tempPile1 = pile1;
+    list<int> tempPile2 = pile2;
 
     while (!tempPile1.empty()) {
-        if (tempPile1.top()!=tempPile2.top()) {
+        if (tempPile1.back()!=tempPile2.back()) {
             return false;
         }
-        tempPile1.pop();
-        tempPile2.pop();
+        tempPile1.pop_back();
+        tempPile2.pop_back();
     }
     return true;
 }
 
 bool Etat::operator==(Etat*autre) const{
     for (int i = 0; i < 4; i++) {
-    if (!comparerPiles(tiges[i],autre->tiges[i])) {
+    if (!comparerListes(tiges[i],autre->tiges[i])) {
       return false;
     }
   }

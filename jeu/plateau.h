@@ -8,7 +8,6 @@
 using namespace std;
 class Etat {
     private:
-        std::list<int> tiges[4];
         int level;
         int cost;
         Etat *pere;
