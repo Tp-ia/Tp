@@ -1,6 +1,6 @@
 #include "../jeu/plateau.h"
 #include "./profondeur_dabord.h"//juste pour la struct retour, chnager endroit de retour
-#include "heuristiques.cpp"
+#include "heuristiques.h"
 #include <list>
 #include <algorithm>
 
@@ -12,7 +12,7 @@ using namespace std;
 
 //TODO
 bool contains(Etat *actuel,list<Etat> chemin){//parcours dune liste
-    auto it = find(chemin.begin(),chemin.end(),actuel);
+    auto it = find(chemin.begin(),chemin.end(),*actuel);
     if(it !=chemin.end()){
         return true;
     }
@@ -20,16 +20,16 @@ bool contains(Etat *actuel,list<Etat> chemin){//parcours dune liste
 }
 
 
-retour search(list<Etat> &chemin, int g,int lim,int (*h)(Etat*,Etat*),Etat *but){
+retour search(list<Etat> &chemin, int lim,int (*h)(Etat*,Etat*),Etat *but){
     retour resultat;
     resultat.but=false;
     Etat node = chemin.back();
-    int f =node.getlevel() + node.getcout();
+    int f = node.getlevel() + node.getcost();
     if(f>lim){
         resultat.lim=f;
         return resultat;
     }
-    if(node == but){
+    if(node == *but){
         resultat.e=&node;
         resultat.but=true;
         return resultat;

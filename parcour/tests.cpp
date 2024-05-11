@@ -1,9 +1,32 @@
 #include "profondeur_dabord.h"
 #include "../jeu/plateau.h"
+#include <list>
+
+
+
+
+
+
+
+bool Etat::equals(Etat*autre){
+    cout << "==\n";
+    for (int i = 0; i < 4; i++) {
+      if (this->tiges[i] != autre->tiges[i]) {
+        cout << i;
+        cout <<"\n";
+        return false;
+      }
+  }
+  return true;
+}
+
+
+
+
 //encore a faire: fonctions heuristiques,tester les fonctions et terminer ida
 int main(int argc,char ** argv){
-    Etat * initial_1=new Etat(0);
-    Etat * initial_2=new Etat(0);
+    Etat *initial_1=new Etat(0);
+    Etat *initial_2=new Etat(0);
     Etat *but_1 = new Etat(0);
     Etat *but_2 = new Etat(0);
     Etat *but_3 = new Etat(0);
@@ -90,6 +113,20 @@ int main(int argc,char ** argv){
     but_6->add_cube(2,6);
     but_6->add_cube(2,9);
     but_6->add_cube(2,3);
+
     
+    retour r = ProfondeurDAbord(initial_2, but_1);
+
+    if(r.but == true){
+        if(r.e == but_1){
+            cout << "reussit\n";
+        } else {
+            r.e->print();
+            but_1->print();
+        }
+    } else {
+        cout << "echec\n";
+    }
+
     return 0;
 }

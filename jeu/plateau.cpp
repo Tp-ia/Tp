@@ -43,29 +43,16 @@ list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
     return successors;
 }
 
-bool comparerListes(const list<int>& pile1, const std::list<int>& pile2) {
-    if (pile1.size() != pile2.size()) {
-        return false;
-    }
 
-    list<int> tempPile1 = pile1;
-    list<int> tempPile2 = pile2;
 
-    while (!tempPile1.empty()) {
-        if (tempPile1.back()!=tempPile2.back()) {
-            return false;
-        }
-        tempPile1.pop_back();
-        tempPile2.pop_back();
-    }
-    return true;
-}
-
-bool Etat::operator==(Etat*autre) const{
+bool Etat::operator==(const Etat& autre) const{
+    cout << "==\n";
     for (int i = 0; i < 4; i++) {
-    if (!comparerListes(tiges[i],autre->tiges[i])) {
-      return false;
-    }
+      if (this->tiges[i] != autre.tiges[i]) {
+        cout << i;
+        cout <<"\n";
+        return false;
+      }
   }
   return true;
 }

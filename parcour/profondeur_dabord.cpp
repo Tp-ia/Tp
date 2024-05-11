@@ -1,28 +1,25 @@
 #include "profondeur_dabord.h"
 #include "../jeu/plateau.h"
 #include <queue>
+#include <stack>
 
 using namespace std;
 
-bool elementDansQueue(const queue<Etat>& maQueue, Etat* elementRecherche) {
-    queue<Etat> maQueueTemp = maQueue; // Copie de la file pour éviter de la modifier
-
-    while (!maQueueTemp.empty()) {
-        if (maQueueTemp.front() == elementRecherche) {
-            return true; // L'élément est trouvé
+bool elementDansListe(const std::list<Etat>& liste,  Etat const* etat) {
+    for (const auto& element : liste) {
+        if (&element == etat) { // Assuming operator== is defined for Etat
+            return true;
         }
-        maQueueTemp.pop(); // Passe à l'élément suivant
     }
-
-    return false; // L'élément n'est pas trouvé
+    return false;
 }
 
 retour ProfondeurDAbord(Etat *e,Etat *etat_but){
     retour resultat;
     resultat.but=false;
     resultat.e=e;
-    list<Etat> enAttente;
-    queue<Etat> vus;
+    stack<Etat> enAttente;
+    list<Etat> vus;
     enAttente.push(*e);
     Etat fils=Etat(0);
     Etat prochain=Etat(0);
@@ -30,8 +27,8 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
     while(!enAttente.empty() && !resultat.but){
         prochain=enAttente.top();
         enAttente.pop();
-        vus.push(prochain);
-        if(prochain == etat_but){
+        vus.push_back(prochain);
+        if(prochain == *etat_but){
             resultat.but=true;
             resultat.e=etat_but;
         }
@@ -40,7 +37,7 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
             while(!q.empty()){
                 fils = q.front();
                 q.pop();
-                if(!elementDansQueue(vus,&fils)){
+                if(!elementDansListe(vus,&fils)){
                     enAttente.push(fils);
                 }
             }
@@ -54,7 +51,7 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     resultat.but=false;
     resultat.e=e;
     stack<Etat> enAttente;
-    queue<Etat> vus;
+    list<Etat> vus;
     enAttente.push(*e);
     Etat fils=Etat(0);
     Etat prochain=Etat(0);
@@ -62,8 +59,8 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     while(!enAttente.empty() && !resultat.but){
         prochain=enAttente.top();
         enAttente.pop();
-        vus.push(prochain);
-        if(prochain == etat_but){
+        vus.push_back(prochain);
+        if(prochain == *etat_but){
             resultat.but=true;
             resultat.e=etat_but;
         }
@@ -72,7 +69,7 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
             while(!q.empty()){
                 fils = q.front();
                 q.pop();
-                if(!elementDansQueue(vus,&fils) && fils.getlevel()<=lim){
+                if(!elementDansListe(vus,&fils) && fils.getlevel()<=lim){
                     enAttente.push(fils);
                 }
             }

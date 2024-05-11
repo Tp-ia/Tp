@@ -8,10 +8,12 @@
 using namespace std;
 class Etat {
     private:
+        
         int level;
         int cost;
         Etat *pere;
     public:
+        std::list<int> tiges[4];
         Etat(int level);
         int getlevel(){ return level;}
         int getcost(){ return cost;}
@@ -23,11 +25,12 @@ class Etat {
         Etat* clone();
         queue<Etat> filsEtat();
         list<Etat> filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*));
-        bool operator==(Etat *autre) const;
+        bool operator==(const Etat& autre) const;
         bool operator<(const Etat& other) const {
         return cost < other.cost;
     }
         void printChemin();
+        bool equals(Etat *autre);
 };
 
 #endif
