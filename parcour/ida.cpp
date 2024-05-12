@@ -53,7 +53,7 @@ retour search(list<Etat> &chemin, int lim,int (*h)(Etat*,Etat*),Etat *but){
 }
 
 //RETOUR Etat OU PATH?
-Etat ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
+retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     int compteur = 0;
     int lim = h(initial,but);
     list<Etat> chemin ={*initial};
@@ -66,6 +66,6 @@ Etat ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
         lim=resultat.lim;
     }
     cout << compteur;
-    return resultat.but;
+    return resultat;
 }
 

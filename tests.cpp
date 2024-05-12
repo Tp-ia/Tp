@@ -120,7 +120,7 @@ int main(int argc,char ** argv){
     retour r21 = ProfondeurDAbord(initial_2, but_1);
 
     if(r21.but == true){
-        if(r21.e == but_1){
+        if(*(r21.e) == *but_1){
             cout << "reussit\n";
         } else {
             r21.e->print();
@@ -133,7 +133,7 @@ int main(int argc,char ** argv){
     retour r21b = ProfondeurDAbordBornee(initial_2, but_1, 1);
 
     if(r21b.but == true){
-        if(r21b.e == but_1){
+        if(*(r21b.e) == *but_1){
             cout << "reussit\n";
         } else {
             r21b.e->print();
@@ -146,7 +146,7 @@ int main(int argc,char ** argv){
     retour r11b = ProfondeurDAbordBornee(initial_1, but_1, 1);
 
     if(r11b.but == true){
-        if(r11b.e == but_1){
+        if(*r11b.e == *(but_1)){
             cout << "reussit\n";
         } else {
             r11b.e->print();
@@ -156,10 +156,10 @@ int main(int argc,char ** argv){
         cout << "echec\n";
     }
 
-    Etat e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
-    if(e21 == *but_1) cout <<"reussit\n";
+    retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
+    if(*(e21.e) == *but_1) cout <<"reussit\n";
     else cout<< "echec\n";
-    Etat e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
+    retour e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
 
     
 
