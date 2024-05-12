@@ -1,6 +1,5 @@
 #include "../jeu/plateau.h"
-#include "./profondeur_dabord.h"//juste pour la struct retour, chnager endroit de retour
-#include "heuristiques.h"
+#include "parcour.h"
 #include <list>
 #include <algorithm>
 
@@ -55,15 +54,18 @@ retour search(list<Etat> &chemin, int lim,int (*h)(Etat*,Etat*),Etat *but){
 
 //RETOUR Etat OU PATH?
 Etat ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
+    int compteur = 0;
     int lim = h(initial,but);
     list<Etat> chemin ={*initial};
     retour resultat;
     resultat.but=false;
     resultat.e=initial;
     while(!resultat.but){
+        compteur++;
         resultat = search(chemin,lim,h,but);
         lim=resultat.lim;
     }
+    cout << compteur;
     return resultat.but;
 }
 

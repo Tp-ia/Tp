@@ -1,4 +1,4 @@
-#include "profondeur_dabord.h"
+#include "parcour.h"
 #include "../jeu/plateau.h"
 #include <queue>
 #include <stack>
@@ -85,6 +85,7 @@ retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int pas){
         lim+=pas;
         resultat=ProfondeurDAbordBornee_sous_fonction(e,etat_but,lim);
     }
+    resultat.lim = lim;
     return resultat;
 }
 

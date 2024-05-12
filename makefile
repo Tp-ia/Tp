@@ -3,10 +3,10 @@ CFLAGS = -std=c++11 -Wall
 LDFLAGS =
 
 # Target executable
-TARGET = profondeur_dabord
+TARGET = recherche
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/tests.cpp parcour/ida.cpp parcour/heuristiques.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp tests.cpp parcour/ida.cpp parcour/heuristiques.cpp
 
 
 # Object files

@@ -46,11 +46,8 @@ list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
 
 
 bool Etat::operator==(const Etat& autre) const{
-    cout << "==\n";
     for (int i = 0; i < 4; i++) {
       if (this->tiges[i] != autre.tiges[i]) {
-        cout << i;
-        cout <<"\n";
         return false;
       }
   }
