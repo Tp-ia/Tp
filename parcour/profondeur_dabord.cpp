@@ -2,6 +2,7 @@
 #include "../jeu/plateau.h"
 #include <queue>
 #include <stack>
+#include <list>
 
 using namespace std;
 
@@ -18,16 +19,16 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
     retour resultat;
     resultat.but=false;
     resultat.e=e;
-    stack<Etat> enAttente;
+    list<Etat> enAttente;
     list<Etat> vus;
-    enAttente.push(*e);
+    enAttente.push_front(*e);
     Etat fils=Etat(0);
     Etat prochain=Etat(0);
-    queue<Etat> q;
+    list<Etat> q;
     while(!enAttente.empty() && !resultat.but){
-        prochain=enAttente.top();
-        enAttente.pop();
-        vus.push_back(prochain);
+        prochain=enAttente.front();
+        enAttente.pop_front();
+        vus.push_front(prochain);
         if(prochain == *etat_but){
             resultat.but=true;
             resultat.e=etat_but;
@@ -36,9 +37,9 @@ retour ProfondeurDAbord(Etat *e,Etat *etat_but){
             q = prochain.filsEtat();
             while(!q.empty()){
                 fils = q.front();
-                q.pop();
+                q.pop_front();
                 if(!elementDansListe(vus,&fils)){
-                    enAttente.push(fils);
+                    enAttente.push_front(fils);
                 }
             }
         }
@@ -50,16 +51,16 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     retour resultat;
     resultat.but=false;
     resultat.e=e;
-    stack<Etat> enAttente;
+    list<Etat> enAttente;
     list<Etat> vus;
-    enAttente.push(*e);
+    enAttente.push_front(*e);
     Etat fils=Etat(0);
     Etat prochain=Etat(0);
-    queue<Etat> q;
+    list<Etat> q;
     while(!enAttente.empty() && !resultat.but){
-        prochain=enAttente.top();
-        enAttente.pop();
-        vus.push_back(prochain);
+        prochain=enAttente.front();
+        enAttente.pop_front();
+        vus.push_front(prochain);
         if(prochain == *etat_but){
             resultat.but=true;
             resultat.e=etat_but;
@@ -68,9 +69,9 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
             q = prochain.filsEtat();
             while(!q.empty()){
                 fils = q.front();
-                q.pop();
+                q.pop_front();
                 if(!elementDansListe(vus,&fils) && fils.getlevel()<=lim){
-                    enAttente.push(fils);
+                    enAttente.push_front(fils);
                 }
             }
         }

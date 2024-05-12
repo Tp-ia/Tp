@@ -22,7 +22,7 @@ class Etat {
         int suppr_cube(int num_tige);
         void move(int num_tige_depart, int num_tige_destination);
         Etat* clone();
-        queue<Etat> filsEtat();
+        list<Etat> filsEtat();
         list<Etat> filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*));
         bool operator==(const Etat& autre) const;
         bool operator<(const Etat& other) const {

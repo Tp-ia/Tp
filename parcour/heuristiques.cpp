@@ -14,9 +14,7 @@ int nombreCubeMalMis(Etat *e, Etat *but) {
             while (it != e->tiges[i].end() && it_but != but->tiges[i].end()){
                 if (*it != *it_but)
                     break;
-                else{
-                    compteur++;
-                }
+                compteur++;
                 it++;
                 it_but++;
             }

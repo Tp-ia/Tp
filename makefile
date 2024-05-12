@@ -7,7 +7,7 @@ LDFLAGS =
 TARGET = recherche
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp test/tests.cpp parcour/ida.cpp parcour/heuristiques.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heuristiques.cpp test/tests_plateau.cpp
 
 
 # Object files

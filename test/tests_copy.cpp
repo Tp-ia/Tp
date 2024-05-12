@@ -1,10 +1,11 @@
-#include "parcour/parcour.h"
-#include "jeu/plateau.h"
-#include "parcour/heuristiques.h"
+#include "../parcour/parcour.h"
+#include "../jeu/plateau.h"
+#include "../parcour/heuristiques.h"
 #include <list>
 
 void test_ida(Etat *init,Etat *but){
     retour r = ida_star(init,but,nombreCubeMalMis);
+    cout << "reussit \n";
     if(r.but == true){
         if(*(r.e) == *but){
             cout << "reussit \n";
