@@ -2,11 +2,12 @@ CC = g++
 CFLAGS = -std=c++11 -Wall
 LDFLAGS =
 
+
 # Target executable
 TARGET = recherche
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp tests.cpp parcour/ida.cpp parcour/heuristiques.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp test/tests.cpp parcour/ida.cpp parcour/heuristiques.cpp
 
 
 # Object files
@@ -23,3 +24,4 @@ $(TARGET): $(OBJS)
 # Clean target
 clean:
 	$(RM) $(TARGET) $(OBJS)
+	

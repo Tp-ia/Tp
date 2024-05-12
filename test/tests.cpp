@@ -1,7 +1,7 @@
-#include "parcour/parcour.h"
-#include "jeu/plateau.h"
+#include "../parcour/parcour.h"
+#include "../jeu/plateau.h"
 #include <list>
-#include "parcour/heuristiques.h"
+#include "../parcour/heuristiques.h"
 
 
 
@@ -115,52 +115,59 @@ int main(int argc,char ** argv){
     but_6->add_cube(2,9);
     but_6->add_cube(2,3);
 
+    cout<< "debut test\n";
 
+    int t = nombreCubeMalMis(initial_2,but_1);
+
+    initial_2->print();
+    but_1->print();
+
+    cout<<t<<"\n";
     
-    retour r21 = ProfondeurDAbord(initial_2, but_1);
+    // retour r21 = ProfondeurDAbord(initial_2, but_1);
 
-    if(r21.but == true){
-        if(*(r21.e) == *but_1){
-            cout << "reussit r21\n";
-        } else {
-            r21.e->print();
-            but_1->print();
-        }
-    } else {
-        cout << "echec\n";
-    }
+    // if(r21.but == true){
+    //     if(*(r21.e) == *but_1){
+    //         cout << "reussit r21\n";
+    //     } else {
+    //         r21.e->print();
+    //         but_1->print();
+    //     }
+    // } else {
+    //     cout << "echec\n";
+    // }
 
-    retour r21b = ProfondeurDAbordBornee(initial_2, but_1, 1);
+    // retour r21b = ProfondeurDAbordBornee(initial_2, but_1, 1);
 
-    if(r21b.but == true){
-        if(*(r21b.e) == *but_1){
-            cout << "reussit r21b\n";
-        } else {
-            r21b.e->print();
-            but_1->print();
-        }
-    } else {
-        cout << "echec\n";
-    }
+    // if(r21b.but == true){
+    //     if(*(r21b.e) == *but_1){
+    //         cout << "reussit r21b\n";
+    //     } else {
+    //         r21b.e->print();
+    //         but_1->print();
+    //     }
+    // } else {
+    //     cout << "echec\n";
+    // }
 
-    retour r11b = ProfondeurDAbordBornee(initial_1, but_1, 1);
+    // retour r11b = ProfondeurDAbordBornee(initial_1, but_1, 1);
 
-    if(r11b.but == true){
-        if(*r11b.e == *(but_1)){
-            cout << "reussit r11b\n";
-        } else {
-            r11b.e->print();
-            but_1->print();
-        }
-    } else {
-        cout << "echec\n";
-    }
+    // if(r11b.but == true){
+    //     if(*r11b.e == *(but_1)){
+    //         cout << "reussit r11b\n";
+    //     } else {
+    //         r11b.e->print();
+    //         but_1->print();
+    //     }
+    // } else {
+    //     cout << "echec\n";
+    // }
 
-    // retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
-    // if(*(e21.e) == *but_1) cout <<"reussit e21\n";
-    // else cout<< "echec\n";
-    retour e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
-    cout<< "OUIIIIIIIIIIII\n";
+    // // retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
+    // // if(*(e21.e) == *but_1) cout <<"reussit e21\n";
+    // // else cout<< "echec\n";
+    // retour e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
+    // cout<< "OUIIIIIIIIIIII\n";
     
 
     // retour r11 = ProfondeurDAbord(initial_1, but_1); //tourne a l'infinit. C'est normal ?
@@ -176,5 +183,6 @@ int main(int argc,char ** argv){
     //     cout << "echec\n";
     // }
 
+    cout<<"fin\n";
     return 0;
 }

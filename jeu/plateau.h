@@ -3,7 +3,6 @@
 #include <iostream>
 #include <list>
 #include <queue>
-#include <list>
 
 using namespace std;
 class Etat {
