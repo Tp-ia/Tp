@@ -124,64 +124,70 @@ int main(int argc,char ** argv){
 
     cout<<t<<"\n";
     
-    // retour r21 = ProfondeurDAbord(initial_2, but_1);
+    retour r21 = ProfondeurDAbord(initial_2, but_1);
 
-    // if(r21.but == true){
-    //     if(*(r21.e) == *but_1){
-    //         cout << "reussit r21\n";
-    //     } else {
-    //         r21.e->print();
-    //         but_1->print();
-    //     }
-    // } else {
-    //     cout << "echec\n";
-    // }
+    if(r21.but == true){
+        if(*(r21.e) == *but_1){
+            cout << "reussit r21\n";
+        } else {
+            r21.e->print();
+            but_1->print();
+        }
+    } else {
+        cout << "echec\n";
+    }
 
-    // retour r21b = ProfondeurDAbordBornee(initial_2, but_1, 1);
+    retour r21b = ProfondeurDAbordBornee(initial_2, but_1, 1);
 
-    // if(r21b.but == true){
-    //     if(*(r21b.e) == *but_1){
-    //         cout << "reussit r21b\n";
-    //     } else {
-    //         r21b.e->print();
-    //         but_1->print();
-    //     }
-    // } else {
-    //     cout << "echec\n";
-    // }
+    if(r21b.but == true){
+        if(*(r21b.e) == *but_1){
+            cout << "reussit r21b\n";
+        } else {
+            r21b.e->print();
+            but_1->print();
+        }
+    } else {
+        cout << "echec\n";
+    }
 
-    // retour r11b = ProfondeurDAbordBornee(initial_1, but_1, 1);
+    retour r11b = ProfondeurDAbordBornee(initial_1, but_1, 1);
 
-    // if(r11b.but == true){
-    //     if(*r11b.e == *(but_1)){
-    //         cout << "reussit r11b\n";
-    //     } else {
-    //         r11b.e->print();
-    //         but_1->print();
-    //     }
-    // } else {
-    //     cout << "echec\n";
-    // }
+    if(r11b.but == true){
+        if(*r11b.e == *(but_1)){
+            cout << "reussit r11b\n";
+        } else {
+            r11b.e->print();
+            but_1->print();
+        }
+    } else {
+        cout << "echec\n";
+    }
 
-    // // retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
-    // // if(*(e21.e) == *but_1) cout <<"reussit e21\n";
-    // // else cout<< "echec\n";
-    // retour e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
-    // cout<< "OUIIIIIIIIIIII\n";
+    retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
+    if(*(e21.e) == *but_1) cout <<"reussit e21\n";
+    else {
+        cout<< "echec e21\n";
+        cout <<e21.but <<"\n";
+        e21.e->print();
+        cout<< "fin print\n";
+    }
+    cout<< "fin test e21\n";
+    retour e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
+    cout<< "OUIIIIIIIIIIII\n";
     
 
-    // retour r11 = ProfondeurDAbord(initial_1, but_1); //tourne a l'infinit. C'est normal ?
+    retour r11 = ProfondeurDAbord(initial_1, but_1); //tourne a l'infinit. C'est normal ?
 
-    // if(r11.but == true){
-    //     if(r11.e == but_1){
-    //         cout << "reussit\n";
-    //     } else {
-    //         r11.e->print();
-    //         but_1->print();
-    //     }
-    // } else {
-    //     cout << "echec\n";
-    // }
+    if(r11.but == true){
+        if(r11.e == but_1){
+            cout << "reussit\n";
+        } else {
+            r11.e->print();
+            but_1->print();
+        }
+    } else {
+        cout << "echec\n";
+    }
 
     cout<<"fin\n";
     return 0;

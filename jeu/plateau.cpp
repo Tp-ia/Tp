@@ -56,17 +56,32 @@ bool Etat::operator==(const Etat& autre) const{
 }
 
 
-void Etat::print() {
-  list<int> tempStack;
-  for (int i = 0; i < 4; i++) {
-    tempStack = tiges[i];
-    cout << "tige " << i << "= ";
-    while (!tempStack.empty()) {
-      std::cout << tempStack.back() << " ";
-      tempStack.pop_back();
-    }
+// void Etat::print() {
+// 	cout<< "ETAT:\n";
+//   list<int> tempStack;
+//   for (int i = 0; i < 4; i++) {
+//     tempStack = tiges[i];
+//     cout << "tige " << i << "= ";
+//     while (!tempStack.empty()) {
+//       std::cout << tempStack.back() << " ";
+//       tempStack.pop_back();
+//     }
 
-    std::cout << "\n";
+//     std::cout << "\n";
+//   }
+// }
+
+void Etat::print() {
+	cout<< "ETAT:\n";
+	list<int>::iterator it;
+  	for (int i = 0; i < 4; i++) {
+		it = tiges[i].begin();
+		cout<< "tiges " << i << " :";
+		while(it !=tiges[i].end()){
+			cout<< *it << " ";
+			it++;
+		}
+		cout<<"\n";
   }
 }
 

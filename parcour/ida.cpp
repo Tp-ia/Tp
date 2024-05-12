@@ -22,7 +22,9 @@ bool contains(Etat *actuel,list<Etat> chemin){//parcours dune liste
 retour search(list<Etat> &chemin, int lim,int (*h)(Etat*,Etat*),Etat *but){
     retour resultat;
     resultat.but=false;
+    
     Etat node = chemin.back();
+    resultat.e = &node;
     int f = node.getlevel() + node.getcost();
     if(f>lim){
         resultat.lim=f;
@@ -65,7 +67,6 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
         resultat = search(chemin,lim,h,but);
         lim=resultat.lim;
     }
-    cout << compteur;
     return resultat;
 }
 
