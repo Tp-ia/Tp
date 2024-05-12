@@ -12,8 +12,9 @@ Etat::Etat(int level) {
 std::queue<Etat> Etat::filsEtat(){
     std::queue<Etat> filsEtat;
     for(int num_tige_depart =0;num_tige_depart<4;num_tige_depart++){
+      if(tiges[num_tige_depart].size()!=0){
         for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
-            if(num_tige_arrive!=num_tige_depart && tiges[num_tige_depart].size()!=0 && tiges[num_tige_arrive].size()<3 ){
+            if(num_tige_arrive!=num_tige_depart &&  tiges[num_tige_arrive].size()<3 ){
                 Etat *fils=clone();
                 fils->pere=this;
                 fils->move(num_tige_depart,num_tige_arrive);
@@ -21,6 +22,7 @@ std::queue<Etat> Etat::filsEtat(){
                 filsEtat.push(*fils);
             }
         }
+      }
     }
     return filsEtat;
 }
@@ -29,15 +31,17 @@ std::queue<Etat> Etat::filsEtat(){
 list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
 	list<Etat> successors;
 	for(int num_tige_depart =0;num_tige_depart<4;num_tige_depart++){
-    for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
-            if(num_tige_arrive!=num_tige_depart && tiges[num_tige_depart].size()!=0 && tiges[num_tige_arrive].size()<3 ){
-                Etat *fils=clone();
-                fils->move(num_tige_depart,num_tige_arrive);
-                fils->level++;
-				fils->setcost(h(this,but));
-                successors.push_back(*fils);
-            }
-        }
+    if(tiges[num_tige_depart].size()!=0){
+      for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
+              if(num_tige_arrive!=num_tige_depart && tiges[num_tige_arrive].size()<3 ){
+                  Etat *fils=clone();
+                  fils->move(num_tige_depart,num_tige_arrive);
+                  fils->level++;
+                  fils->setcost(h(this,but));
+                  successors.push_back(*fils);
+              }
+      }
+    }
     }
 
 	successors.sort();
