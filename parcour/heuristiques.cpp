@@ -12,12 +12,13 @@ int nombreCubeMalMis(Etat *e, Etat *but) {
             it = e->tiges[i].begin();
             it_but = but->tiges[i].begin();
             while (it != e->tiges[i].end() && it_but != but->tiges[i].end()){
-                compteur++;
+                if (*it != *it_but)
+                    break;
+                else{
+                    compteur++;
+                }
                 it++;
                 it_but++;
-                if (*it != *it_but){
-                    break;
-                }
             }
             total += but->tiges[i].size() - compteur;
         }

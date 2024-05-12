@@ -48,7 +48,7 @@ list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
 
 bool Etat::operator==(const Etat& autre) const{
     for (int i = 0; i < 4; i++) {
-      if (this->tiges[i] != autre.tiges[i]) {
+      if (!std::equal(tiges[i].begin(), tiges[i].end(), autre.tiges[i].begin())) {
         return false;
       }
   }
