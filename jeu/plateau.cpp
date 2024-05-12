@@ -6,6 +6,7 @@ using namespace std;
 
 Etat::Etat(int level) { 
   this->level = level;
+  this->cost = 0;
  }
 
 std::queue<Etat> Etat::filsEtat(){

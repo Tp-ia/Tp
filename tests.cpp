@@ -121,7 +121,7 @@ int main(int argc,char ** argv){
 
     if(r21.but == true){
         if(*(r21.e) == *but_1){
-            cout << "reussit\n";
+            cout << "reussit r21\n";
         } else {
             r21.e->print();
             but_1->print();
@@ -134,7 +134,7 @@ int main(int argc,char ** argv){
 
     if(r21b.but == true){
         if(*(r21b.e) == *but_1){
-            cout << "reussit\n";
+            cout << "reussit r21b\n";
         } else {
             r21b.e->print();
             but_1->print();
@@ -147,7 +147,7 @@ int main(int argc,char ** argv){
 
     if(r11b.but == true){
         if(*r11b.e == *(but_1)){
-            cout << "reussit\n";
+            cout << "reussit r11b\n";
         } else {
             r11b.e->print();
             but_1->print();
@@ -156,11 +156,11 @@ int main(int argc,char ** argv){
         cout << "echec\n";
     }
 
-    retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
-    if(*(e21.e) == *but_1) cout <<"reussit\n";
-    else cout<< "echec\n";
+    // retour e21 = ida_star(initial_2, but_1, nombreCubeMalMis);
+    // if(*(e21.e) == *but_1) cout <<"reussit e21\n";
+    // else cout<< "echec\n";
     retour e11 = ida_star(initial_1, but_1, nombreCubeMalMis);
-
+    cout<< "OUIIIIIIIIIIII\n";
     
 
     // retour r11 = ProfondeurDAbord(initial_1, but_1); //tourne a l'infinit. C'est normal ?
