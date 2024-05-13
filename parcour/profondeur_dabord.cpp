@@ -15,30 +15,57 @@ bool elementDansListe(const std::list<Etat>& liste,  Etat const* etat) {
     return false;
 }
 
-retour ProfondeurDAbord(Etat *e,Etat *etat_but){
+// retour ProfondeurDAbord(Etat *e,Etat *etat_but){
+//     retour resultat;
+//     resultat.but=false;
+//     resultat.e=e;
+//     list<Etat> enAttente;
+//     list<Etat> vus;
+//     enAttente.push_front(*e);
+//     list<Etat> q;
+//     Etat prochain=Etat(0);
+//     // while(!enAttente.empty() && !resultat.but){
+//         prochain=enAttente.front();
+//         enAttente.pop_front();
+//         vus.push_front(prochain);
+//         if(prochain == *etat_but){
+//             resultat.but=true;
+//             resultat.e=&prochain;
+//         }
+//         else{
+//             q = prochain.filsEtat();
+//             for (Etat &fils : q) {
+//                 fils.print();
+//                 if (!elementDansListe(vus, &fils)) {
+//                     enAttente.push_front(fils);
+//                 }
+//             }
+//         }
+//     // }
+//     etat_but->print();
+//     return resultat;
+// }
+
+retour ProfondeurDAbord(Etat *e, Etat *etat_but) {
     retour resultat;
-    resultat.but=false;
-    resultat.e=e;
+    resultat.but = false;
+    resultat.e = e;
     list<Etat> enAttente;
     list<Etat> vus;
     enAttente.push_front(*e);
-    Etat fils=Etat(0);
-    Etat prochain=Etat(0);
-    list<Etat> q;
-    while(!enAttente.empty() && !resultat.but){
-        prochain=enAttente.front();
+
+    while (!enAttente.empty() && !resultat.but) {
+        Etat& prochain = enAttente.front(); // Utilisation d'une référence
         enAttente.pop_front();
         vus.push_front(prochain);
-        if(prochain == *etat_but){
-            resultat.but=true;
-            resultat.e=etat_but;
-        }
-        else{
-            q = prochain.filsEtat();
-            while(!q.empty()){
-                fils = q.front();
-                q.pop_front();
-                if(!elementDansListe(vus,&fils)){
+
+        if (prochain == *etat_but) {
+            resultat.but = true;
+            resultat.e = &prochain;
+        } else {
+            list<Etat> q = prochain.filsEtat();
+            for (Etat& fils : q) { // Utilisation d'une référence
+                if (!elementDansListe(vus, &fils)) {
                     enAttente.push_front(fils);
                 }
             }
@@ -54,7 +81,7 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     list<Etat> enAttente;
     list<Etat> vus;
     enAttente.push_front(*e);
-    Etat fils=Etat(0);
+    Etat *fils= new Etat(0);
     Etat prochain=Etat(0);
     list<Etat> q;
     while(!enAttente.empty() && !resultat.but){
@@ -68,10 +95,10 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
         else{
             q = prochain.filsEtat();
             while(!q.empty()){
-                fils = q.front();
+                *fils = q.front();
                 q.pop_front();
-                if(!elementDansListe(vus,&fils) && fils.getlevel()<=lim){
-                    enAttente.push_front(fils);
+                if(!elementDansListe(vus,fils) && fils->getlevel()<=lim){
+                    enAttente.push_front(*fils);
                 }
             }
         }
