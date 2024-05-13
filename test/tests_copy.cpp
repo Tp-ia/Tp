@@ -4,8 +4,8 @@
 #include <list>
 
 void test_ida(Etat *init,Etat *but){
+    cout<<"ida debut\n";
     retour r = ida_star(init,but,nombreCubeMalMis);
-    cout << "reussit \n";
     if(r.but == true){
         if(*(r.e) == *but){
             cout << "reussit \n";
@@ -33,7 +33,7 @@ void test_profondeur(Etat *init,Etat *but){
 }
 
 void test_profondeur_bornee(Etat *init,Etat *but){
-    retour r = ProfondeurDAbordBornee(init,but,1);
+    retour r = DFID(init,but,1);
     if(r.but == true){
         if(*(r.e) == *but){
             cout << "reussit profondeur bornee\n";
@@ -144,12 +144,14 @@ int main(int argc,char ** argv){
     test_profondeur(initial_1,but_5);
     test_profondeur(initial_1,but_6);
 
-    // test_ida(initial_1,but_1);
-    // test_ida(initial_1,but_2);
-    // test_ida(initial_1,but_3);
-    // test_ida(initial_1,but_4);
-    // test_ida(initial_1,but_5);
-    // test_ida(initial_1,but_6);
+    cout<<"debut test ida\n";
+    test_ida(initial_1,but_1);
+    test_ida(initial_1,but_2);
+    test_ida(initial_1,but_3);
+    test_ida(initial_1,but_4);
+    test_ida(initial_1,but_5);
+    test_ida(initial_1,but_6);
+    cout<<"fin test ida\n";
 
     test_profondeur_bornee(initial_1,but_2);
     test_profondeur_bornee(initial_1,but_3);

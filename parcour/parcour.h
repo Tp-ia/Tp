@@ -14,7 +14,8 @@ typedef struct{
 } retour ;
 
 retour ProfondeurDAbord(Etat *e,Etat *etat_but);
-retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int pas);
+retour DFID(Etat *e,Etat *etat_but,int pas);
 retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*));
+retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int lim);
 
 #endif

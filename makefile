@@ -7,7 +7,7 @@ LDFLAGS =
 TARGET = recherche
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heuristiques.cpp test/tests_copy.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heuristiques.cpp
 
 
 # Object files
@@ -23,5 +23,13 @@ $(TARGET): $(OBJS)
 
 # Clean target
 clean:
-	$(RM) $(TARGET) $(OBJS)
-	
+	$(RM) $(TARGET) $(OBJS) tplateau tcopy tests test/*.o
+
+tplateau: $(OBJS) test/tests_plateau.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+tcopy: $(OBJS) test/tests_copy.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+tests: $(OBJS) test/tests.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)

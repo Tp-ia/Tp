@@ -44,7 +44,7 @@ retour ProfondeurDAbord(Etat *e, Etat *etat_but) {
     return resultat;
 }
 
-retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
+retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int lim){
     retour resultat;
     resultat.but = false;
     resultat.e = e;
@@ -72,12 +72,12 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     return resultat;
 }
 
-retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int pas){
+retour DFID(Etat *e,Etat *etat_but,int pas){
     int lim=0;
-    retour resultat=ProfondeurDAbordBornee_sous_fonction(e,etat_but,lim);
+    retour resultat=ProfondeurDAbordBornee(e,etat_but,lim);
     while(!resultat.but){
         lim+=pas;
-        resultat=ProfondeurDAbordBornee_sous_fonction(e,etat_but,lim);
+        resultat=ProfondeurDAbordBornee(e,etat_but,lim);
     }
     resultat.lim = lim;
     return resultat;
