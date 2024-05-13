@@ -6,13 +6,13 @@
 
 using namespace std;
 
-bool elementDansListe(const std::list<Etat>& liste,  Etat const* etat) {
-    for (const auto& element : liste) {
-        if (&element == etat) { // Assuming operator== is defined for Etat
-            return true;
+bool elementDansListe(const list<Etat>& liste, const Etat* etat) {
+    for (const Etat& element : liste) {
+        if (element == *etat) {
+            return true; // L'état est trouvé dans la liste
         }
     }
-    return false;
+    return false; // L'état n'est pas trouvé dans la liste
 }
 
 
@@ -25,13 +25,13 @@ retour ProfondeurDAbord(Etat *e, Etat *etat_but) {
     enAttente.push_front(*e);
 
     while (!enAttente.empty() && !resultat.but) {
-        Etat& prochain = enAttente.front(); // Utilisation d'une référence
+        Etat prochain = *enAttente.front().clone(); // Utilisation d'une référence
         enAttente.pop_front();
         vus.push_front(prochain);
 
         if (prochain == *etat_but) {
             resultat.but = true;
-            resultat.e = &prochain;
+            resultat.e = prochain.clone();
         } else {
             list<Etat> q = prochain.filsEtat();
             for (Etat& fils : q) { // Utilisation d'une référence
@@ -53,13 +53,13 @@ retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int lim){
     enAttente.push_front(*e);
 
     while (!enAttente.empty() && !resultat.but) {
-        Etat& prochain = enAttente.front(); // Utilisation d'une référence
+        Etat prochain = *enAttente.front().clone(); // Utilisation d'une référence
         enAttente.pop_front();
         vus.push_front(prochain);
 
         if (prochain == *etat_but) {
             resultat.but = true;
-            resultat.e = &prochain;
+            resultat.e = prochain.clone();
         } else {
             list<Etat> q = prochain.filsEtat();
             for (Etat& fils : q) { // Utilisation d'une référence

@@ -6,7 +6,7 @@ LDFLAGS =
 TARGET = recherche
 
 # Source files
-SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heuristiques.cpp
+SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heuristiques.cpp test/tests_copy.cpp
 
 # Object files
 OBJS = $(patsubst %.cpp,bin/%.o,$(SRCS)) 
