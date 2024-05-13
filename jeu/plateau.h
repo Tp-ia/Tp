@@ -16,6 +16,7 @@ class Etat {
         Etat(int level);
         int getlevel(){ return level;}
         int getcost(){ return cost;}
+        Etat *getpere(){ return pere;}
         void setcost(int cost){ this->cost = cost;}
         void print();
         void add_cube(int num_tige, int cube);

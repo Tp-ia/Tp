@@ -7,6 +7,7 @@ using namespace std;
 Etat::Etat(int level) { 
   this->level = level;
   this->cost = 0;
+  this->pere = NULL;
  }
 
 list<Etat> Etat::filsEtat(){

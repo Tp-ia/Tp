@@ -88,6 +88,15 @@ bool contains(Etat *actuel,list<Etat> chemin){//parcours dune liste
 //     return resultat;
 // }
 
+list<Etat> *recreateGenealogie(Etat *e){
+    list<Etat> *l = new list<Etat>();
+    l->push_front(*e);
+    while(l->front().getpere()){
+        l->push_front(*l->front().getpere());
+    }
+    return l;
+}
+
 
 retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     retour r;
@@ -100,5 +109,6 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
         r = ProfondeurDAbordBornee(initial, but,seuil);
     }
 
+    r.l = recreateGenealogie(r.e);
     return r;
 }
