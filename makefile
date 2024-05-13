@@ -2,34 +2,33 @@ CC = g++
 CFLAGS = -std=c++11 -Wall
 LDFLAGS =
 
-
 # Target executable
 TARGET = recherche
 
 # Source files
 SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heuristiques.cpp
 
-
 # Object files
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(patsubst %.cpp,bin/%.o,$(SRCS)) 
 
 # Main target
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
 
 # Compile source files
-%.o: %.cpp
+bin/%.o: %.cpp
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 # Clean target
 clean:
-	$(RM) $(TARGET) $(OBJS) tplateau tcopy tests test/*.o
+	rm -rf bin
 
-tplateau: $(OBJS) test/tests_plateau.o
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+tplateau: $(OBJS) bin/test/tests_plateau.o 
+	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
 
-tcopy: $(OBJS) test/tests_copy.o
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+tcopy: $(OBJS) bin/test/tests_copy.o 
+	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
 
-tests: $(OBJS) test/tests.o
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+tests: $(OBJS) bin/test/tests.o
+	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
