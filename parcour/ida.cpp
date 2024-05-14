@@ -105,14 +105,21 @@ void printList(list<Etat> liste){
 
 retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,Etat*)){
     retour resultat;
+    resultat.l = new list<Etat>;
     resultat.but = false;
     list<Etat> enAttente;
     list<Etat> vus;
     enAttente.push_front(*e);
     int nSeuil = 100000;
     resultat.lim = lim;
+    int niveau = -1;
     while (!enAttente.empty() && !resultat.but) {
         Etat prochain = enAttente.front();
+        while(prochain.getlevel()<=niveau){
+            resultat.l->pop_back();
+            niveau--;
+        }
+        resultat.l->push_back(prochain);
         vus.push_front(prochain);
         enAttente.pop_front();
         if (prochain == *etat_but) {
@@ -148,8 +155,8 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
         cout<< r.lim <<"\n";
         r = ProfondeurDAbordBorneeIDA(initial, but,r.lim,h);
     }
-    // r.l = recreateGenealogie(r.e);
-    // printList(*r.l);
+    printList(*r.l);
+    cout <<"\n";
     
     return r;
 }
