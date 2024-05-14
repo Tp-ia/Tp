@@ -63,6 +63,7 @@ retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,
             niveau--;
         }
         resultat.l->push_back(prochain);
+        niveau=prochain.getlevel();
         vus.push_front(prochain);
         enAttente.pop_front();
         if (prochain == *etat_but) {
@@ -84,6 +85,8 @@ retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,
         if(resultat.lim<nSeuil)
             resultat.lim = nSeuil;
     }
+    cout<<"Nombre noeuds developpés : "<<vus.size()<<endl;
+    cout<<"Nombre noeuds créés : "<<vus.size()+enAttente.size()<<endl<<"\n";
     return resultat;
 }
 
@@ -92,13 +95,12 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     r.but = false;
     r.lim = h(initial,but);
     int compteur = 0;
-
     while(!r.but){
         compteur++;
         r = ProfondeurDAbordBorneeIDA(initial, but,r.lim,h);
     }
+    // printList(*r.l);
+    cout <<"Nombre d'iterations IDA : "<<compteur<<endl;
     printList(*r.l);
-    cout <<"\n";
-    
     return r;
 }

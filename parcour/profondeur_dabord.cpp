@@ -82,14 +82,17 @@ retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int lim){
         } else {
             list<Etat> q = prochain->filsEtat();
             for (Etat& fils : q) { // Utilisation d'une référence
-                if (fils.getlevel()<=lim && !elementDansListe(vus, &fils)) {
+                if (fils.getlevel()<=lim){
+                    if(!elementDansListe(vus, &fils)) {
                     // cout << fils.getlevel();
                     enAttente.push_front(fils);
                 }
             }
         }
     }
+    }
     return resultat;
+
 }
 
 
