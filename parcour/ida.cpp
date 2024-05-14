@@ -97,16 +97,51 @@ list<Etat> *recreateGenealogie(Etat *e){
     return l;
 }
 
+retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,Etat*)){
+    retour resultat;
+    resultat.but = false;
+    resultat.e = e;
+    list<Etat> enAttente;
+    list<Etat> vus;
+    enAttente.push_front(*e);
+    int nSeuil = 100000;
+
+    while (!enAttente.empty() && !resultat.but) {
+        Etat& prochain = enAttente.front(); // Utilisation d'une référence
+        enAttente.pop_front();
+        vus.push_front(prochain);
+
+        if (prochain == *etat_but) {
+            resultat.but = true;
+            resultat.e = &prochain;
+        } else {
+            list<Etat> q = prochain.filsEtatIDA(etat_but,h);
+            for (Etat& fils : q) { // Utilisation d'une référence
+                if (!elementDansListe(vus, &fils) && fils.getlevel()<=lim) {
+                    enAttente.push_front(fils);
+                } else {
+                    nSeuil = (nSeuil < fils.getcost()) ? nSeuil : fils.getcost();
+                }
+            }
+        }
+    }
+    if(enAttente.empty()){
+        resultat.lim = nSeuil;
+    }
+    return resultat;
+
+
+}
 
 retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     retour r;
     r.but = false;
-    int seuil = h(initial,but);
+    r.lim = h(initial,but);
     int compteur = 0;
 
     while(!r.but){
         compteur++;
-        r = ProfondeurDAbordBornee(initial, but,seuil);
+        r = ProfondeurDAbordBorneeIDA(initial, but,r.lim,h);
     }
 
     r.l = recreateGenealogie(r.e);
