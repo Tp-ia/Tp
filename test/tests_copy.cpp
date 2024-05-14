@@ -154,7 +154,7 @@ int main(int argc,char ** argv){
     // test_ida(initial_1,but_5);
     // test_ida(initial_1,but_6);
     // cout<<"fin test ida\n";
-    test_profondeur_bornee(initial_1,but_1);
+
     test_profondeur_bornee(initial_1,but_2);
     test_profondeur_bornee(initial_1,but_3);
     test_profondeur_bornee(initial_1,but_4);
