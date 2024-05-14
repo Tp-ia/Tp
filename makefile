@@ -29,3 +29,6 @@ tplateau: $(OBJS) bin/test/tests_plateau.o
 
 tparcour: $(OBJS) bin/test/tests_parcour.o
 	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
+
+theuristique: $(OBJS) bin/test/tests_heuristique.o
+	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)

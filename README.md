@@ -26,8 +26,16 @@ make tpalteau
 pour l'ensemble des test sur les differente methode de plateau
 
 ```bash
-make tpalteau
+make theuristique
+./bin/theuristique
+```
+
+pour l'ensemble des test sur les differente methode de heuristique
+
+```bash
+make
 ./bin/parcour <etat_initial> <etat_final>
 ```
 
 etat_initial et etat_final doivent etre compris entre 1 et 8
+calcule le chemin de etat_initial a etat_final utilisant IDA*

@@ -48,11 +48,7 @@ void test_profondeur_bornee(Etat *init,Etat *but){
     }
 }
 
-void test_heuristiqueFine(Etat *init,Etat *but){
-    init->print();
-    but->print();
-    cout << fine(init,but)<<"\n"<<endl;;
-}
+
 
 void test_ida_Fine(Etat *init,Etat *but){
     cout<<"ida debut\n";
@@ -167,14 +163,7 @@ int main(int argc,char ** argv){
     // test_profondeur(initial_1,but_5);
     // test_profondeur(initial_1,but_6);
 
-    cout<<"debut test ida\n";
-    test_ida(initial_1,but_1);
-    test_ida(initial_1,but_2);
-    test_ida(initial_1,but_3);
-    test_ida(initial_1,but_4);
-    test_ida(initial_1,but_5);
-    test_ida(initial_1,but_6);
-    cout<<"fin test ida\n";
+
 
     // test_profondeur_bornee(initial_1,but_2);
     // test_profondeur_bornee(initial_1,but_3);
@@ -182,12 +171,7 @@ int main(int argc,char ** argv){
     // test_profondeur_bornee(initial_1,but_5);
     // test_profondeur_bornee(initial_1,but_6);
 
-    // test_heuristiqueFine(initial_1,but_1);
-    // test_heuristiqueFine(initial_1,but_2);
-    // test_heuristiqueFine(initial_1,but_3);
-    // test_heuristiqueFine(initial_1,but_4);
-    // test_heuristiqueFine(initial_1,but_5);
-    // test_heuristiqueFine(initial_1,but_6);
+
 
     test_ida_Fine(initial_1,but_1);
     test_ida_Fine(initial_1,but_2);
