@@ -95,10 +95,9 @@ void Etat::print() {
 void Etat::printChemin(){
   Etat *actuel= this;
   for(int i = level;i>0;i--){
-    print();
+    actuel->print();
     actuel = actuel->pere;
   }
-  actuel->print();
 }
 
 void Etat::add_cube(int num_tige, int cube) {

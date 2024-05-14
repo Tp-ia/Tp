@@ -23,6 +23,7 @@ void test_profondeur(Etat *init,Etat *but){
     if(r.but == true){
         if(*(r.e) == *but){
             cout << "reussit \n";
+
         } else {
             r.e->print();
             but->print();
@@ -37,6 +38,7 @@ void test_profondeur_bornee(Etat *init,Etat *but){
     if(r.but == true){
         if(*(r.e) == *but){
             cout << "reussit profondeur bornee\n";
+            r.e->printChemin();
         } else {
             r.e->print();
             but->print();
@@ -144,14 +146,14 @@ int main(int argc,char ** argv){
     // test_profondeur(initial_1,but_5);
     // test_profondeur(initial_1,but_6);
 
-    cout<<"debut test ida\n";
-    test_ida(initial_1,but_1);
-    test_ida(initial_1,but_2);
-    test_ida(initial_1,but_3);
-    test_ida(initial_1,but_4);
-    test_ida(initial_1,but_5);
-    test_ida(initial_1,but_6);
-    cout<<"fin test ida\n";
+    // cout<<"debut test ida\n";
+    // test_ida(initial_1,but_1);
+    // test_ida(initial_1,but_2);
+    // test_ida(initial_1,but_3);
+    // test_ida(initial_1,but_4);
+    // test_ida(initial_1,but_5);
+    // test_ida(initial_1,but_6);
+    // cout<<"fin test ida\n";
     test_profondeur_bornee(initial_1,but_1);
     test_profondeur_bornee(initial_1,but_2);
     test_profondeur_bornee(initial_1,but_3);
