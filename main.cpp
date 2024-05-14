@@ -1,4 +1,7 @@
 #include "jeu/plateau.h"
+#include "parcour/parcour.h"
+#include "parcour/heuristiques.h"
+#include <cstdlib>
 #include <string>
 
 
@@ -94,15 +97,26 @@ void init_etat(){
     etat_8->add_cube(2,9);
     etat_8->add_cube(2,3);
 }
+Etat *convertStringToEtat(char *c){
+    if(c[0] == '1') return etat_1;
+    if(c[0] == '2') return etat_2;
+    if(c[0] == '3') return etat_3;
+    if(c[0] == '4') return etat_4;
+    if(c[0] == '5') return etat_5;
+    if(c[0] == '6') return etat_6;
+    if(c[0] == '7') return etat_7;
+    if(c[0] == '8') return etat_8;
+    cerr<<"number etat must be beetween 1 and 8";
+    exit(1);
+}
 
 int main(int argc, char *argv[]){
     if(argc!=3){
         cerr<<"correct usage: parcour <number etat start> <number etat end>";
     }
-    string etat_initial = "etat_";
-    etat_initial.append(argv[1]);
 
-    string etat_but = "etat_";
-    etat_initial.append(argv[2]);
+    init_etat();
+
+    ida_star(convertStringToEtat(argv[1]),convertStringToEtat(argv[2]),fine);
 
 }

@@ -12,7 +12,7 @@ SRCS = parcour/profondeur_dabord.cpp jeu/plateau.cpp parcour/ida.cpp parcour/heu
 OBJS = $(patsubst %.cpp,bin/%.o,$(SRCS))   
 
 # Main target
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) bin/main.o
 	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
 
 # Compile source files
