@@ -64,22 +64,6 @@ bool Etat::operator==(const Etat& autre) const{
   return true;
 }
 
-
-// void Etat::print() {
-// 	cout<< "ETAT:\n";
-//   list<int> tempStack;
-//   for (int i = 0; i < 4; i++) {
-//     tempStack = tiges[i];
-//     cout << "tige " << i << "= ";
-//     while (!tempStack.empty()) {
-//       std::cout << tempStack.back() << " ";
-//       tempStack.pop_back();
-//     }
-
-//     std::cout << "\n";
-//   }
-// }
-
 void Etat::print() {
 	cout<< "ETAT:\n";
 	list<int>::iterator it;
@@ -135,22 +119,3 @@ Etat* Etat::clone(){
     copy->cost = cost;
     return copy;
 }
-
-// int main() {
-//   Etat *e = new Etat(0);
-
-//   e->print();
-//   std::cout << "\n";
-//   e->add_cube(1, 3);
-//   e->print();
-//   std::cout << "\n";
-
-//   e->suppr_cube(1);
-//   e->print();
-//   std::cout << "\n";
-
-//   e->add_cube(1, 3);
-
-//   e->move(1, 2);
-//   e->print();
-// }
