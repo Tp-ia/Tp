@@ -37,22 +37,21 @@ int* searchValeur(int valeur,Etat *but){
             j++;            
         }
     }
-    return ij;
 }
 
 int fine(Etat *e, Etat *but){
     std::list<int>::iterator it, it_but;
     int total = 0;
+    int compteur = 0;
     for (int valeur = 1; valeur < 10; valeur++) {
         int*ij=searchValeur(valeur,e);
         int*ij_but=searchValeur(valeur,but);
         if(ij[0]!=ij_but[0] || ij[1]!=ij_but[1]){
             total += e->tiges[ij[0]].size() - ij[1];
-            if((int)e->tiges[ij_but[0]].size()>ij_but[1]){
+            if(e->tiges[ij_but[0]].size()>ij_but[1]){
                 total+= e->tiges[ij_but[0]].size() - ij_but[1];
             }
         }
     }
     return total;
 }
-

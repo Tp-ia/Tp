@@ -106,7 +106,6 @@ void printList(list<Etat> liste){
 retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,Etat*)){
     retour resultat;
     resultat.but = false;
-    resultat.e = new Etat(0);
     list<Etat> enAttente;
     list<Etat> vus;
     enAttente.push_front(*e);
@@ -135,8 +134,6 @@ retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,
         resultat.lim = nSeuil;
     }
     return resultat;
-
-
 }
 
 retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
@@ -151,5 +148,6 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
     }
     r.l = recreateGenealogie(r.e);
     printList(*r.l);
+    
     return r;
 }
