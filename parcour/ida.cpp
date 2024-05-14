@@ -110,20 +110,20 @@ retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,
     list<Etat> vus;
     enAttente.push_front(*e);
     int nSeuil = 100000;
-
+    resultat.lim = lim;
     while (!enAttente.empty() && !resultat.but) {
         Etat prochain = enAttente.front();
         vus.push_front(prochain);
         enAttente.pop_front();
         if (prochain == *etat_but) {
-            prochain.print();
             resultat.but = true;
             resultat.e = prochain.clone();
         } else {
             list<Etat> q = prochain.filsEtatIDA(etat_but,h);
             for (Etat& fils : q) { // Utilisation d'une référence
-                if (fils.getlevel()+fils.getcost()<=lim && !elementDansListe(vus, &fils)) {
-                    enAttente.push_front(fils);
+                if (fils.getlevel()+fils.getcost()<=lim) {
+                    if( !elementDansListe(vus, &fils))
+                        enAttente.push_front(fils);
                 } else {
                     nSeuil = (nSeuil < fils.getlevel()+fils.getcost()) ? nSeuil : fils.getlevel()+fils.getcost();
                 }
@@ -131,7 +131,8 @@ retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,
         }
     }
     if(enAttente.empty()){
-        resultat.lim = nSeuil;
+        if(resultat.lim<nSeuil)
+            resultat.lim = nSeuil;
     }
     return resultat;
 }
@@ -144,10 +145,11 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
 
     while(!r.but){
         compteur++;
+        cout<< r.lim <<"\n";
         r = ProfondeurDAbordBorneeIDA(initial, but,r.lim,h);
     }
-    r.l = recreateGenealogie(r.e);
-    printList(*r.l);
+    // r.l = recreateGenealogie(r.e);
+    // printList(*r.l);
     
     return r;
 }
