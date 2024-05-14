@@ -7,7 +7,6 @@ using namespace std;
 Etat::Etat(int level) { 
   this->level = level;
   this->cost = 0;
-  this->pere = NULL;
  }
 
 list<Etat> Etat::filsEtat(){
@@ -28,6 +27,9 @@ list<Etat> Etat::filsEtat(){
     return filsEtat;
 }
 
+bool comparerCost(Etat& e1, Etat& e2){
+  return e1.getcost()>e2.getcost();
+}
 
 list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
 	list<Etat> successors;
@@ -45,7 +47,7 @@ list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
     }
   }
 
-	successors.sort();
+	successors.sort(comparerCost);
     return successors;
 }
 
@@ -125,7 +127,9 @@ Etat* Etat::clone(){
     Etat *copy =new Etat(level);
     for(int i =0;i<4;i++){
         copy->tiges[i]=tiges[i];
-        copy->level=level;
+    }
+    if(level!=0){
+      copy->pere=pere->clone();
     }
     return copy;
 }

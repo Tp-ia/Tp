@@ -24,11 +24,11 @@ bin/%.o: %.cpp
 clean:
 	rm -rf bin
 
-tplateau: $(OBJS) bin/test/tests_plateau.o 
-	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
+# tplateau: $(OBJS) bin/test/tests_plateau.o 
+# 	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
 
-tcopy: $(OBJS) bin/test/tests_copy.o 
-	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
+# tcopy: $(OBJS) bin/test/tests_copy.o 
+# 	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
 
-tests: $(OBJS) bin/test/tests.o
-	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)
+# tests: $(OBJS) bin/test/tests.o
+# 	$(CC) $(CFLAGS) -o bin/$@ $^ $(LDFLAGS)

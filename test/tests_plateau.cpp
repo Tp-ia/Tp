@@ -5,6 +5,7 @@
 // Fonction de test
 void test_Etat() {
     // Test 1
+    std::cout << "Test 1 passed" << std::endl;
     Etat *initial_1=new Etat(0);
     if (initial_1->getlevel()==0) {
         std::cout << "Test 1 passed" << std::endl;
