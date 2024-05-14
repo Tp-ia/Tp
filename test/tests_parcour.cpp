@@ -188,6 +188,7 @@ int main(int argc,char ** argv){
     // test_heuristiqueFine(initial_1,but_4);
     // test_heuristiqueFine(initial_1,but_5);
     // test_heuristiqueFine(initial_1,but_6);
+
     test_ida_Fine(initial_1,but_1);
     test_ida_Fine(initial_1,but_2);
     test_ida_Fine(initial_1,but_3);
