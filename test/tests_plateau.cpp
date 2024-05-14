@@ -221,6 +221,13 @@ void test_nombreMalMis(){
     
 }
 
+void test_FILS_ETAT(Etat*init,Etat * but){
+    for (auto& element : init->filsEtatIDA(but,nombreCubeMalMis)) {
+        element.print();
+        cout << element.getcost();
+    }
+}
+
 int main() {
     test_Etat();
     test_add_cube();

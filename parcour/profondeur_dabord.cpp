@@ -8,10 +8,7 @@ using namespace std;
 
 bool elementDansListe(std::list<Etat>& liste,  Etat* etat) {
     for (auto& element : liste) {
-        if (element == *etat && element.getlevel()<= etat->getlevel()) { // Assuming operator== is defined for Etat
-            // Etat *print =(Etat*)etat;
-            // cout << "je suis la";
-            // print->print();
+        if (element == *etat ) {
             return true;
         }
     }
@@ -58,8 +55,6 @@ retour ProfondeurDAbord(Etat *e, Etat *etat_but) {
             }
         }
     }
-    free(&enAttente);
-    free(&vus);
     return resultat;
 }
 
@@ -70,12 +65,17 @@ retour ProfondeurDAbordBornee_sous_fonction(Etat *e,Etat *etat_but,int lim){
     list<Etat> enAttente;
     list<Etat> vus;
     enAttente.push_front(*e);
+    int derNvV=-1;
     // int compteur=0;
     while (!enAttente.empty() && !resultat.but ) {
         // compteur++;
         Etat *prochain = enAttente.front().clone(); // Utilisation d'une référence
         enAttente.pop_front();
-        vus.push_front(*prochain);
+        while(derNvV>=prochain->getlevel()){
+            vus.pop_front();
+            derNvV--;
+        }
+        vus.push_back(*prochain);
         if (*prochain == *etat_but) {
             resultat.but = true;
             resultat.e = prochain->clone();
@@ -103,6 +103,8 @@ retour ProfondeurDAbordBornee(Etat *e,Etat *etat_but,int pas){
     resultat.lim = lim;
     return resultat;
 }
+
+
 
 void printQueue(const queue<Etat>& q) {
     // Create a copy of the queue to preserve its original content

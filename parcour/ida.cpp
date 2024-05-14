@@ -10,6 +10,7 @@ using namespace std;
 
 
 
+
 bool contains(Etat *actuel,list<Etat> chemin){//parcours dune liste
     auto it = find(chemin.begin(),chemin.end(),*actuel);
     if(it !=chemin.end()){
@@ -97,30 +98,37 @@ list<Etat> *recreateGenealogie(Etat *e){
     return l;
 }
 
+void printList(list<Etat> liste){
+    for (auto& element : liste)
+        element.print();
+}
+
 retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,Etat*)){
     retour resultat;
     resultat.but = false;
-    resultat.e = e;
+    resultat.e = new Etat(0);
     list<Etat> enAttente;
     list<Etat> vus;
     enAttente.push_front(*e);
     int nSeuil = 100000;
 
     while (!enAttente.empty() && !resultat.but) {
-        Etat& prochain = enAttente.front(); // Utilisation d'une référence
+        cout<<"here"<<endl;
+        Etat *prochain = enAttente.front().clone(); // Utilisation d'une référence
+        cout<<"here 3"<<endl;
         enAttente.pop_front();
-        vus.push_front(prochain);
-
-        if (prochain == *etat_but) {
+        vus.push_front(*prochain);
+        if (*prochain == *etat_but) {
             resultat.but = true;
-            resultat.e = &prochain;
+            resultat.e = prochain->clone();
         } else {
-            list<Etat> q = prochain.filsEtatIDA(etat_but,h);
+            list<Etat> q = prochain->filsEtatIDA(etat_but,h);
+            cout<<"here 2"<<endl;
             for (Etat& fils : q) { // Utilisation d'une référence
-                if (!elementDansListe(vus, &fils) && fils.getlevel()<=lim) {
+                if (fils.getlevel()+fils.getcost()<=lim && !elementDansListe(vus, &fils)) {
                     enAttente.push_front(fils);
                 } else {
-                    nSeuil = (nSeuil < fils.getcost()) ? nSeuil : fils.getcost();
+                    nSeuil = (nSeuil < fils.getlevel()+fils.getcost()) ? nSeuil : fils.getlevel()+fils.getcost();
                 }
             }
         }
@@ -143,7 +151,8 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
         compteur++;
         r = ProfondeurDAbordBorneeIDA(initial, but,r.lim,h);
     }
-
+    cout<<"here"<<endl;
     r.l = recreateGenealogie(r.e);
+    printList(*r.l);
     return r;
 }
