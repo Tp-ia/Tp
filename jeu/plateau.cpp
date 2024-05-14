@@ -130,6 +130,9 @@ Etat* Etat::clone(){
     for(int i =0;i<4;i++){
         copy->tiges[i]=tiges[i];
     }
+    copy->pere = pere;
+    copy->level = level;
+    copy->cost = cost;
     return copy;
 }
 
