@@ -39,7 +39,7 @@ list<Etat> Etat::filsEtatIDA(Etat *but,int (*h)(Etat*,Etat*)){
       for(int num_tige_arrive=0; num_tige_arrive<4;num_tige_arrive++){
           if(num_tige_arrive!=num_tige_depart && tiges[num_tige_arrive].size()<3 ){
             Etat *fils=clone();
-            pere=this;
+            fils->pere=this;
             fils->move(num_tige_depart,num_tige_arrive);
             fils->level++;
             fils->setcost(h(fils,but));
