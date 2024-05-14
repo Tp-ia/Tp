@@ -113,17 +113,15 @@ retour ProfondeurDAbordBorneeIDA(Etat *e,Etat *etat_but,int lim, int (*h)(Etat*,
     int nSeuil = 100000;
 
     while (!enAttente.empty() && !resultat.but) {
-        cout<<"here"<<endl;
-        Etat *prochain = enAttente.front().clone(); // Utilisation d'une référence
-        cout<<"here 3"<<endl;
+        Etat prochain = enAttente.front();
+        vus.push_front(prochain);
         enAttente.pop_front();
-        vus.push_front(*prochain);
-        if (*prochain == *etat_but) {
+        if (prochain == *etat_but) {
+            prochain.print();
             resultat.but = true;
-            resultat.e = prochain->clone();
+            resultat.e = prochain.clone();
         } else {
-            list<Etat> q = prochain->filsEtatIDA(etat_but,h);
-            cout<<"here 2"<<endl;
+            list<Etat> q = prochain.filsEtatIDA(etat_but,h);
             for (Etat& fils : q) { // Utilisation d'une référence
                 if (fils.getlevel()+fils.getcost()<=lim && !elementDansListe(vus, &fils)) {
                     enAttente.push_front(fils);
@@ -151,7 +149,6 @@ retour ida_star(Etat *initial,Etat *but,int (*h)(Etat*,Etat*)){
         compteur++;
         r = ProfondeurDAbordBorneeIDA(initial, but,r.lim,h);
     }
-    cout<<"here"<<endl;
     r.l = recreateGenealogie(r.e);
     printList(*r.l);
     return r;

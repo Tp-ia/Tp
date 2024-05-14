@@ -24,6 +24,7 @@ list<Etat> Etat::filsEtat(){
         }
       }
     }
+    
     return filsEtat;
 }
 
@@ -128,9 +129,6 @@ Etat* Etat::clone(){
     Etat *copy =new Etat(level);
     for(int i =0;i<4;i++){
         copy->tiges[i]=tiges[i];
-    }
-    if(level!=0){
-      copy->pere=pere->clone();
     }
     return copy;
 }
